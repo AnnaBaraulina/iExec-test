@@ -2,6 +2,8 @@ import style from "./Form.module.css";
 import Button from "../Button/Button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../AuthContext";
+
 
 const Form = ({ size, initialFormState = 'initial' }) => {
   const sizeClass = size === "large" ? style.formLarge : style.formSmall;
@@ -9,6 +11,7 @@ const Form = ({ size, initialFormState = 'initial' }) => {
   const [buttonText, setButtonText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { setIsAuthorized } = useAuth();
 
   useEffect(() => {
     if (formState === "initial") {
@@ -66,6 +69,7 @@ const Form = ({ size, initialFormState = 'initial' }) => {
       console.log("MetaMask network switched to iExec Sidechain");
 
       setTimeout(() => {
+        setIsAuthorized(true);
         navigate("/authorized");
       }, 2000);
     } catch (e) {

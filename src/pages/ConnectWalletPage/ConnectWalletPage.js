@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 
 const ConnectWalletPage = () => {
  const navigate = useNavigate();
- {/*const [formState, setFormState] = useState('initial')*/}
+
 
   return (
+    <div className={styles.animatedGradient}>
     <div className={styles.container}>
       <main className={styles.main}>
         <Header />
@@ -19,6 +20,7 @@ const ConnectWalletPage = () => {
         </p>
         <Form size="small"/>
       </main>
+    </div>
     </div>
   );
 };
