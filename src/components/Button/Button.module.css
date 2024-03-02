@@ -1,0 +1,13 @@
+.button {
+  width: 320px;
+  height: 44px;
+  background-color: #fcd15a;
+  color: #1d1d24;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Mulish';
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  cursor: pointer;
+}

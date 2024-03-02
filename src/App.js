@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes
+} from 'react-router-dom';
 import './App.css';
+import ConnectWalletPage from './pages/ConnectWalletPage/ConnectWalletPage';
+import AuthorizedPage from './pages/AuthorizedPage/AuthorizedPage';
+
+
+//сюда вложим все страницы с маршрутами
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Routes>
+      <Route path='/' element={<ConnectWalletPage/>}></Route>
+      <Route path='/authorized' element={<AuthorizedPage/>}></Route>
+  
+    </Routes>
+ 
   );
 }
 
