@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import logo from "../../images/Logo-product.svg";
-import HeaderButton from "../headerButtton/headerButton";
-import { useAuth } from "../../AuthContext";
+import HeaderButton from "../headerButtton/headerButton.js";
+import { useAuth } from "../../AuthContext.js";
 import user from '../../images/Eth-address.svg';
 import exit from '../../images/fi_log-out.svg';
 
