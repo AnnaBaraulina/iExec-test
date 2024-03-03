@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthContext.js";
 import { IExecDataProtector } from "@iexec/dataprotector";
 import image from "../../images/fi_plus-circle.svg";
-import ButtonAccess from "../../pages/ButtonAccess/ButtonAccess.js";
+import ButtonAccess from "../ButtonAccess/ButtonAccess.js";
 
-const Form = ({ size, initialFormState = "initial", protectedEmail }) => {
+const Form = ({ size, initialFormState = "initial" }) => {
   const web3Provider = window.ethereum;
   const dataProtector = new IExecDataProtector(web3Provider);
 

@@ -12,7 +12,7 @@
 
 .container {
   width: 100%;
-  background: linear-gradient(
+/*  background: linear-gradient(
     270deg,
     #1d1d24 0%,
     #3f0d3f 30%, 
@@ -22,7 +22,7 @@
     #3f0d3f 90%,
     #1d1d24 100%
   );
-  background-size: 800% 800%;
+  background-size: 800% 800%;*/
 
 
   min-height: 100vh;
