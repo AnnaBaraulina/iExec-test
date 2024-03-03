@@ -1,23 +1,22 @@
 .header {
  width: 100%;
  display: flex;
+ justify-content: space-between;
+ align-items: center;
  background-color: rgba(13, 13, 18, 0.9);
-  
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 96%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.test {
-  color: white;
+.logo {
+  margin-left: 2%;
 }
 
 .containerExit {
   display: flex;
+  margin-right: 2%;
+}
+
+@media (max-width: 420px) {
+ .userNumber {
+  display: none;
+ }
 }

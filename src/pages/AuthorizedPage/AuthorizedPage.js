@@ -2,6 +2,8 @@ import style from "./AuthorizedPage.module.css";
 import Form from "../../components/Form/Form.js";
 import { useAuth } from "../../AuthContext.js";
 import { useEffect } from "react";
+import HeroTitle from "../../components/HeroTitle/HeroTitle.js";
+import HeroSubtitle from "../../components/HeroSubtitle/HeroSubtitle.js";
 
 const AuthorizedPage = () => {
   const { setIsAuthorized } = useAuth();
@@ -17,11 +19,8 @@ const AuthorizedPage = () => {
   return (
     <div className={style.container}>
       <main className={style.main}>
-        <h1 className={style.title}>Secret Email Service</h1>
-        <p className={style.subtitle}>
-          iExec creates the technologies for individuals and organizations to
-          create, protect and develop their digital estate.
-        </p>
+        <HeroTitle/>
+        <HeroSubtitle/>
         <Form size="small" initialFormState="createAddress" />
       </main>
     </div>

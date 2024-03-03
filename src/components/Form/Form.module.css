@@ -58,7 +58,8 @@
 }
 
 .formSmall {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   height: 304px;
   display: flex;
   flex-direction: column;
@@ -82,7 +83,6 @@
 
 .subtitle {
   word-wrap: break-word;
-  max-width: 320px;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -117,4 +117,17 @@
 .protected {
   margin-top: 10%;
   margin-bottom: 15%;
+}
+
+
+@media (max-width: 450px) {
+  .formSmall {
+   width: 90%;
+  }
+  .formMedium {
+    width: 90%;
+  }
+  .formLarge {
+    width: 90%;
+  }
 }

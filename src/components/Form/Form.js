@@ -46,11 +46,20 @@ const Form = ({ size, initialFormState = "initial" }) => {
   const handleShareClick = async (e) => {
     e.preventDefault();
 
+    const protectedData = JSON.parse(localStorage.getItem("protectedEmail"));
+    if (!protectedData) {
+      console.error("No protected data available");
+      return;
+    }
+    const protectedDataAddress = protectedData.address;
+    const authorizedApp = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
+    const authorizedUser = "0xF048eF3d7E3B33A465E0599E641BB29421f7Df92";
+
     try {
       const grantedAccess = await dataProtector.grantAccess({
-        protectedData: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
-        authorizedApp: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
-        authorizedUser: "0xecb504d39723b0be0e3a9aa33d646642d1051ee1",
+        protectedData: protectedDataAddress,
+        authorizedApp: authorizedApp,
+        authorizedUser: authorizedUser,
       });
       console.log("Access granted successfully", grantedAccess);
     } catch (error) {
@@ -73,7 +82,6 @@ const Form = ({ size, initialFormState = "initial" }) => {
 
   const handleConnectClick = async (e) => {
     e.preventDefault();
-    console.log("Кнопка нажата");
     setButtonText("initializing...");
 
     try {
