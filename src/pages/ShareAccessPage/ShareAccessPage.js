@@ -1,32 +1,43 @@
-import style from './ShareAccessPage.module.css';
-import { useEffect } from 'react';
-import Form from '../../components/Form/Form.js';
-import { useAuth } from '../../AuthContext.js';
-import { useState } from 'react';
-import HeroTitle from '../../components/HeroTitle/HeroTitle.js';
-import HeroSubtitle from '../../components/HeroSubtitle/HeroSubtitle.js';
+import style from "./ShareAccessPage.module.css";
+import { useEffect } from "react";
+import Form from "../../components/Form/Form.js";
+import { useAuth } from "../../AuthContext.js";
+import { useState } from "react";
+import HeroTitle from "../../components/HeroTitle/HeroTitle.js";
+import HeroSubtitle from "../../components/HeroSubtitle/HeroSubtitle.js";
 
 const ShareAccessPage = () => {
-    const { setIsAuthorized } = useAuth();
-    const protectedData = JSON.parse(localStorage.getItem('protectedEmail'));
+  const { setIsAuthorized } = useAuth();
 
-    useEffect(() => {
-      const userWallet = localStorage.getItem('userWallet');
-      if (userWallet) {
-        setIsAuthorized(true);
-      }
-    })
+  const [protectedEmailAddress, setProtectedEmailAddress] = useState("");
 
-    return (
-        <div className={style.container}>
-        <main className={style.main}>
-          <HeroTitle/>
-          <HeroSubtitle/>
-         <Form size='medium' initialFormState='shareAccess' protectedEmail={protectedData ? protectedData.address : null}/>
-        </main>
-      </div>
-    );
-    
-}
+  useEffect(() => {
+    const userWallet = localStorage.getItem("userWallet");
+    if (userWallet) {
+      setIsAuthorized(true);
+    }
+  });
+
+  useEffect(() => {
+    const protectedData = JSON.parse(localStorage.getItem("protectedEmail"));
+    if (protectedData && protectedData.address) {
+      setProtectedEmailAddress(protectedData.address);
+    }
+  }, []);
+
+  return (
+    <div className={style.container}>
+      <main className={style.main}>
+        <HeroTitle />
+        <HeroSubtitle />
+        <Form
+          protectedEmail={protectedEmailAddress}
+          size="medium"
+          initialFormState="shareAccess"
+        />
+      </main>
+    </div>
+  );
+};
 
 export default ShareAccessPage;

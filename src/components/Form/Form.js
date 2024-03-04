@@ -7,7 +7,7 @@ import { IExecDataProtector } from "@iexec/dataprotector";
 import image from "../../images/fi_plus-circle.svg";
 import ButtonAccess from "../ButtonAccess/ButtonAccess.js";
 
-const Form = ({ size, initialFormState = "initial" }) => {
+const Form = ({ size, initialFormState = "initial", protectedEmail }) => {
   const web3Provider = window.ethereum;
   const dataProtector = new IExecDataProtector(web3Provider);
 
@@ -43,42 +43,6 @@ const Form = ({ size, initialFormState = "initial" }) => {
     }
   }, [formState]);
 
-  const handleShareClick = async (e) => {
-    e.preventDefault();
-
-    const protectedData = JSON.parse(localStorage.getItem("protectedEmail"));
-    if (!protectedData) {
-      console.error("No protected data available");
-      return;
-    }
-    const protectedDataAddress = protectedData.address;
-    const authorizedApp = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
-    const authorizedUser = "0xF048eF3d7E3B33A465E0599E641BB29421f7Df92";
-
-    try {
-      const grantedAccess = await dataProtector.grantAccess({
-        protectedData: protectedDataAddress,
-        authorizedApp: authorizedApp,
-        authorizedUser: authorizedUser,
-      });
-      console.log("Access granted successfully", grantedAccess);
-    } catch (error) {
-      console.error("Error granting access", error);
-    }
-  };
-
-  const handleCancelClick = () => {
-    console.log("Cancel clicked");
-  };
-
-  const handleProtectClick = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setButtonText("Initializing...");
-    setTimeout(() => {
-      navigate("/create-address");
-    }, 2000);
-  };
 
   const handleConnectClick = async (e) => {
     e.preventDefault();
@@ -153,6 +117,43 @@ const Form = ({ size, initialFormState = "initial" }) => {
       setIsLoading(false);
     }
   };
+
+  const handleShareClick = async (e) => {
+    e.preventDefault();
+
+    if (!protectedEmail) {
+      console.error("No protected email address available");
+      return;
+    }
+
+    const authorizedApp = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
+    const authorizedUser = "0xF048eF3d7E3B33A465E0599E641BB29421f7Df92";
+
+    try {
+      const grantedAccess = await dataProtector.grantAccess({
+        protectedData: protectedEmail,
+        authorizedApp: authorizedApp,
+        authorizedUser: authorizedUser,
+      });
+      console.log("Access granted successfully", grantedAccess);
+    } catch (error) {
+      console.error("Error granting access", error);
+    }
+  };
+
+  const handleCancelClick = () => {
+    console.log("Cancel clicked");
+  };
+
+  const handleProtectClick = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setButtonText("Initializing...");
+    setTimeout(() => {
+      navigate("/create-address");
+    }, 2000);
+  };
+
 
   return (
     <form className={`form ${sizeClass}`}>
